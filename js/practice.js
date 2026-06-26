@@ -126,10 +126,26 @@ SAT.views.practice = function (root, params) {
     });
   }
   function refreshCount() {
-    const cfg = resolveSession(state);
-    avail.textContent = cfg.questions.length + ' question' + (cfg.questions.length === 1 ? '' : 's') +
-      ' available with these filters' +
-      (cfg.questions.length < state.count ? ' (you’ll get all of them)' : '');
+    const secName = state.section === 'rw' ? 'Reading & Writing' : 'Math';
+    let msg;
+    if (state.mode === 'errorlog') {
+      const pool = SAT.engine.filter({ section: state.section, ids: SAT.store.state.errorLog }).length;
+      msg = pool === 0
+        ? `Your ${secName} error log is empty — answer some questions first, then come back to review the ones you miss.`
+        : `This session will review all ${pool} ${secName} question${pool === 1 ? '' : 's'} you’ve missed.`;
+    } else if (state.mode === 'adaptive') {
+      const pool = SAT.engine.filter({ section: state.section }).length;
+      const n = Math.min(state.count, pool);
+      msg = pool === 0
+        ? `No ${secName} questions are loaded yet.`
+        : `You’ll get ${n} ${secName} question${n === 1 ? '' : 's'}, auto-picked to target your weak areas.`;
+    } else {
+      const pool = SAT.engine.filter({ section: state.section, domains: [...state.domains], difficulties: [...state.difficulties] }).length;
+      if (pool === 0) msg = 'No questions match your current filters — turn some off to widen the pool.';
+      else if (pool <= state.count) msg = `You’ll get all ${pool} question${pool === 1 ? '' : 's'} that match your filters.`;
+      else msg = `You’ll get ${state.count} questions, picked at random from the ${pool} that match your filters.`;
+    }
+    avail.textContent = msg;
   }
   rebuildDomains(); rebuildDifficulties(); refreshCount();
 };
