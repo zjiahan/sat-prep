@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAT Trainer — your road to 1500+</title>
+  <meta name="description" content="A focused, adaptive Digital SAT trainer: practice bank, full-length module-adaptive mocks, strategy lessons, and progress analytics aimed at 700+ R&W and 800 Math." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div id="app"><!-- shell injected by app.js --></div>
+
+  <!-- Data (plain scripts assign globals so the app runs from file:// with no server) -->
+  <script src="data/questions.js"></script>
+  <script src="data/lessons.js"></script>
+
+  <!-- Core -->
+  <script src="js/config.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/scoring.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/engine.js"></script>
+
+  <!-- Views -->
+  <script src="js/practice.js"></script>
+  <script src="js/mock.js"></script>
+  <script src="js/lessons.js"></script>
+  <script src="js/streak.js"></script>
+  <script src="js/dashboard.js"></script>
+
+  <!-- Boot (last) -->
+  <script src="js/app.js"></script>
+</body>
+</html>

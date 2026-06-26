@@ -1,0 +1,5 @@
+# Dev-only files — not needed to serve the static site
+node_modules
+test
+scripts
+.git
