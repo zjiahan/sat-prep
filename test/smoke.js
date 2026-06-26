@@ -97,6 +97,11 @@ ok(SAT.engine.isCorrect({ format: 'mc', answer: 1 }, 1) === true, 'mc correct');
 
 // ---- Routes render ----
 go('#/practice'); ok($('.setup-grid'), 'practice setup renders');
+{
+  const btn40 = $$('.seg-btn').find(b => b.textContent === '40');
+  ok(btn40, 'practice: count "40" button present');
+  if (btn40) { btn40.click(); ok(/40/.test($('.avail').textContent), 'practice: changing the question count updates the availability text'); }
+}
 go('#/lessons'); ok($$('.lesson-card').length >= 4, 'lessons list renders');
 go('#/lessons/adaptive'); ok($('.article') && /Module 1/.test($('.article').textContent), 'lesson detail renders');
 go('#/progress'); ok($('.page'), 'progress renders (empty state)');

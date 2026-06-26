@@ -72,7 +72,7 @@ SAT.views.practice = function (root, params) {
   const countSel = el('div', { class: 'seg' });
   [5, 10, 20, 40].forEach(n => {
     const b = el('button', { class: 'seg-btn' + (state.count === n ? ' active' : '') }, String(n));
-    b.addEventListener('click', () => { state.count = n; markSeg(countSel, b); });
+    b.addEventListener('click', () => { state.count = n; markSeg(countSel, b); refreshCount(); });
     countSel.appendChild(b);
   });
   countWrap.appendChild(countSel);
